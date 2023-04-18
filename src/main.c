@@ -1,32 +1,31 @@
 #include "stm32f4xx_hal.h"
+#include "bsp_key.h"
+#include "bsp_led.h"
 
-#define LED_PIN                                GPIO_PIN_13 | GPIO_PIN_14
-#define LED_GPIO_PORT                          GPIOG
-#define LED_GPIO_CLK_ENABLE()                  __HAL_RCC_GPIOG_CLK_ENABLE()
+void SysHalInit();
 
-void LED_Init();
+int main()
+{
+    SysHalInit();
 
-int main(void) {
-  HAL_Init();
-  LED_Init();
-
-  while (1)
-  {
-    HAL_GPIO_TogglePin(LED_GPIO_PORT, LED_PIN);
-    HAL_Delay(1000);
-  }
+    while (1)
+    {
+        if (Key_Pushed(KEY_GPIO_PORT, KEY_PIN) == KEY_ON)
+        {
+            LED1_TOGGLE;
+        }
+    }
+    
 }
 
-void LED_Init() {
-  LED_GPIO_CLK_ENABLE();
-  GPIO_InitTypeDef GPIO_InitStruct;
-  GPIO_InitStruct.Pin = LED_PIN;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
-  HAL_GPIO_Init(LED_GPIO_PORT, &GPIO_InitStruct);
+void SysHalInit()
+{
+    HAL_Init();
+    LED_GPIO_config();
+    Key_GPIO_config();
 }
 
-void SysTick_Handler(void) {
-  HAL_IncTick();
+void SysTick_Handler()
+{
+    HAL_IncTick();
 }

@@ -1,0 +1,19 @@
+#include "stm32f4xx_hal.h"
+
+#define KEY_ON      1
+#define KEY_OFF     0
+
+/*
+ * @brief   User button port definition group
+ */
+#define KEY_GPIO_PORT               GPIOA
+#define KEY_PIN                     GPIO_PIN_0
+#define KEY_GPIO_CLK_ENABLE()       __HAL_RCC_GPIOA_CLK_ENABLE()
+
+
+
+/*
+ * @brief   Utilities
+ */
+void Key_GPIO_config();
+uint8_t Key_Pushed(GPIO_TypeDef* GPIOx, uint16_t GPIO_PIN);
