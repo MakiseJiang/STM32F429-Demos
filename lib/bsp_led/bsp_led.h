@@ -22,7 +22,7 @@
 #define LED2_OFF                    HAL_GPIO_WritePin(LED_GPIO_PORT, LED_PIN_2, GPIO_PIN_SET)
 #define LED2_TOGGLE                 HAL_GPIO_TogglePin(LED_GPIO_PORT, LED_PIN_2)
 
-void LED_GPIO_config();
+void LED_GPIO_Config();
 
 
 

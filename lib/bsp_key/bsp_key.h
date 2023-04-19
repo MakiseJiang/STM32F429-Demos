@@ -15,5 +15,5 @@
 /*
  * @brief   Utilities
  */
-void Key_GPIO_config();
+void Key_GPIO_Config();
 uint8_t Key_Pushed(GPIO_TypeDef* GPIOx, uint16_t GPIO_PIN);

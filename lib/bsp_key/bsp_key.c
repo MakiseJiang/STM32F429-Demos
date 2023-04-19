@@ -3,7 +3,7 @@
 /*
  * @brief   Initialize User button
  */
-void Key_GPIO_config()
+void Key_GPIO_Config()
 {
     KEY_GPIO_CLK_ENABLE();
 

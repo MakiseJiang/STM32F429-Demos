@@ -3,7 +3,7 @@
 /*
  * @brief Initialize LED pins
  */
-void LED_GPIO_config()
+void LED_GPIO_Config()
 {
     LED_GPIO_CLK_ENABLE();
     GPIO_InitTypeDef GPIO_InitStruct;

@@ -2,7 +2,7 @@
 #include "bsp_key.h"
 #include "bsp_led.h"
 
-void SysHalInit();
+void SysHalInit_Config();
 
 int main()
 {
@@ -18,11 +18,11 @@ int main()
     
 }
 
-void SysHalInit()
+void SysHalInit_Config()
 {
     HAL_Init();
-    LED_GPIO_config();
-    Key_GPIO_config();
+    LED_GPIO_Config();
+    Key_GPIO_Config();
 }
 
 void SysTick_Handler()
