@@ -1,19 +1,19 @@
-#include "bsp_key.h"
+#include "bsp_pb.h"
 
 /*
  * @brief   Initialize User button
  */
-void Key_GPIO_Config()
+void PB_GPIO_Config()
 {
     KEY_GPIO_CLK_ENABLE();
 
     GPIO_InitTypeDef GPIO_InitStruct = 
     {
-        .Pin = KEY_PIN,
+        .Pin = PB_PIN,
         .Mode = GPIO_MODE_INPUT
     };
 
-    HAL_GPIO_Init(KEY_GPIO_PORT, &GPIO_InitStruct);
+    HAL_GPIO_Init(PB_GPIO_PORT, &GPIO_InitStruct);
 }
 
 /*
@@ -24,14 +24,14 @@ void Key_GPIO_Config()
  */
 uint8_t Key_Pushed(GPIO_TypeDef* GPIOx, uint16_t GPIO_PIN)
 {
-    if (HAL_GPIO_ReadPin(GPIOx, GPIO_PIN) == KEY_ON)
+    if (HAL_GPIO_ReadPin(GPIOx, GPIO_PIN) == PB_ON)
     {
         /* Wait for the button to be released */
-        while (HAL_GPIO_ReadPin(GPIOx, GPIO_PIN) == KEY_ON);
-        return KEY_ON;
+        while (HAL_GPIO_ReadPin(GPIOx, GPIO_PIN) == PB_ON);
+        return PB_ON;
     }
     else
     {
-        return KEY_OFF;
+        return PB_OFF;
     }
 }

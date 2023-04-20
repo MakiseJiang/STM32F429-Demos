@@ -1,31 +1,37 @@
-#include "stm32f4xx_hal.h"
-#include "bsp_key.h"
-#include "bsp_led.h"
+#include "main.h"
 
-void SysHalInit_Config();
+static void SysHalInit_Config();
+static void Delay(uint32_t);
 
 int main()
 {
-    SysHalInit();
+    SysHalInit_Config();
+    HSE_SetSysClock(25, 336, 2, 7);
 
     while (1)
     {
-        if (Key_Pushed(KEY_GPIO_PORT, KEY_PIN) == KEY_ON)
-        {
-            LED1_TOGGLE;
-        }
+        LED1_ON;
+        Delay(0x0FFFFF);
+        LED1_OFF;
+        Delay(0x0FFFFF);
     }
-    
 }
 
-void SysHalInit_Config()
+/*
+ * @brief   Initialize hal drivers and bsp drivers
+ */
+static void SysHalInit_Config()
 {
     HAL_Init();
     LED_GPIO_Config();
-    Key_GPIO_Config();
 }
 
-void SysTick_Handler()
+/*
+ * @brief Customized delay function
+ */
+static void Delay(__IO uint32_t nCount)
 {
-    HAL_IncTick();
+    for (; nCount != 0; nCount--)
+    {
+    }
 }
