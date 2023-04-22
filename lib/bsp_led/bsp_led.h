@@ -2,6 +2,7 @@
 #define __BSP_LED_H
 
 #include "stm32f4xx_hal.h"
+#include "stm32f429xx.h"
 
 /*
  * @brief   User LED port definition groups
